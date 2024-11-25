@@ -1,5 +1,9 @@
-document.getElementById("playAudio").addEventListener("click", () => {
-    const audio = new Audio("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3");
-    audio.play();
-});
-  
+const urlParams = new URLSearchParams(window.location.search);
+const videoId = urlParams.get("v");
+
+if (videoId) {
+  console.log(`Video ID: ${videoId}`);
+  chrome.runtime.sendMessage({ videoId });
+} else {
+  console.error("No video ID found on this page.");
+}
