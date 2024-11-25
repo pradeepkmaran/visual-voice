@@ -3,7 +3,11 @@
   "name": "YouTube Video ID Fetcher",
   "version": "1.2",
   "description": "Fetches and displays the video ID of the current YouTube video.",
-  "permissions": ["activeTab", "scripting"],
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "tts" 
+  ],
   "background": {
     "service_worker": "background.js"
   },
@@ -13,5 +17,11 @@
       "48": "icon.png",
       "128": "icon.png"
     }
-  }
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.youtube.com/watch*"],
+      "js": ["content.js"]
+    }
+  ]
 }
