@@ -1,9 +1,12 @@
-const urlParams = new URLSearchParams(window.location.search);
-const videoId = urlParams.get("v");
+(() => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const videoId = urlParams.get("v");
 
-if (videoId) {
-  console.log(`Video ID: ${videoId}`);
-  chrome.runtime.sendMessage({ videoId });
-} else {
-  console.error("No video ID found on this page.");
-}
+  if (videoId) {
+    alert(`Video ID: ${videoId}`);
+    console.log(`Video ID: ${videoId}`);
+  } else {
+    alert("No video ID found on this page.");
+    console.error("No video ID found on this page.");
+  }
+})();
