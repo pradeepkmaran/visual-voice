@@ -19,22 +19,22 @@
       if (captions.length > 0) {
         const now = Date.now();
         
-        // Loop through captions and schedule TTS based on offset and duration
         captions.forEach((caption) => {
-          const { text, offset, duration, speechRate } = caption;
+          let { text, offset, duration, speechRate } = caption;
+
+          text = text.replace(/&amp;#39;/g, "'");
+          text = text.replace(/\[Music\]/g, "");
           
-          const rate = Math.min(300, Math.max(100, speechRate));  // Adjust rate between 100 and 300 for comfort
-          const startTime = now + offset * 1000;  // Offset in seconds, convert to milliseconds
+          const rate = Math.min(300, Math.max(100, speechRate));
+          const startTime = now + offset * 1000;
           
-          // Schedule the TTS to start at the right time (with offset)
           setTimeout(() => {
-            // Send message to background to start speech synthesis
             chrome.runtime.sendMessage({
               type: "speak",
               text: text,
               rate: rate
             });
-          }, startTime - Date.now());  // Adjust delay based on current time and offset
+          }, startTime - Date.now());
         });
         
         console.log("Captions scheduled for speech.");
