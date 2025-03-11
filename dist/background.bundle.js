@@ -1,0 +1,1 @@
+chrome.runtime.onMessage.addListener(((e,r,t)=>{"speak"===e.type&&chrome.tts.speak(e.text,{rate:e.rate/100,pitch:1,volume:1,lang:"ta-IN",enqueue:!0,onEvent:e=>{"error"===e&&console.error("Error occurred during speech synthesis.")}})}));
