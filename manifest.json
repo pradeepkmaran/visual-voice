@@ -9,9 +9,10 @@
     "tts" 
   ],
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "dist/background.bundle.js"
   },
   "action": {
+    "default_popup": "src/popup.html",
     "default_icon": {
       "16": "icon.png",
       "48": "icon.png",
@@ -21,7 +22,7 @@
   "content_scripts": [
     {
       "matches": ["https://www.youtube.com/watch*"],
-      "js": ["content.js"]
+      "js": ["dist/content.bundle.js"]
     }
   ]
 }
